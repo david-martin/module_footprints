@@ -35,6 +35,6 @@ async.mapSeries(Object.keys(list), function (dep, cb) {
     throw err
   }
 
-  t.sort(['Heap Used Diff|des']);
+  t.sort(['RSS Diff|des']);
   console.log(t.toString())
 })
