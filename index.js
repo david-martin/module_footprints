@@ -1,8 +1,9 @@
+#!/bin/env node
 var async = require('async')
 var Table = require('easy-table')
 var exec = require('child_process').exec
-
-var list = require('./package.json').dependencies
+var path = require('path')
+var list = require(process.cwd() + '/package.json').dependencies
 var t = new Table()
 
 function formatMB(bytes) {
@@ -16,7 +17,7 @@ async.mapSeries(Object.keys(list), function (dep, cb) {
     env: process.env
   }
   options.env.TEST_MODULE_NAME = dep
-  exec('node ./test.js', options, function (err, stdout) {
+  exec('node ' + path.dirname(__filename) + '/test.js', options, function (err, stdout) {
     if (err) {
       return cb(err)
     }
@@ -34,6 +35,6 @@ async.mapSeries(Object.keys(list), function (dep, cb) {
     throw err
   }
 
-  t.sort(['Heap Total Diff|des']);
+  t.sort(['Heap Used Diff|des']);
   console.log(t.toString())
 })

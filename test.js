@@ -1,6 +1,7 @@
 
 var lastMemoryUsage = null
 var diff = {}
+var path = require('path');
 
 // function formatMB(bytes) {
 //   return (bytes / 1024 / 1024).toFixed(2) + ' MB';
@@ -27,7 +28,7 @@ function printMemUsage () {
 printMemUsage()
 
 // console.log('requiring', process.env.TEST_MODULE_NAME)
-var thing = require(process.env.TEST_MODULE_NAME)
+var thing = require(process.cwd() + '/node_modules/' + process.env.TEST_MODULE_NAME)
 
 printMemUsage()
 diff.name = process.env.TEST_MODULE_NAME
