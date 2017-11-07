@@ -14,20 +14,26 @@ async.mapSeries(Object.keys(list), function (dep, cb) {
   console.log('Running test for ' + dep)
   var options = {
     cwd: process.cwd(),
-    env: process.env
+    env: process.env,
+    timeout: 5000
   }
   options.env.TEST_MODULE_NAME = dep
   exec('node ' + path.dirname(__filename) + '/test.js', options, function (err, stdout) {
     if (err) {
-      return cb(err)
+      return cb()
+      console.log('Error parsing : ' + dep + err );
     }
     console.log('stdout', stdout)
+try{
     var memoryUsageDiff = JSON.parse(stdout)
     t.cell('Module Name', memoryUsageDiff.name)
     t.cell('RSS Diff', memoryUsageDiff.rss, formatMB)
     t.cell('Heap Total Diff', memoryUsageDiff.heapTotal, formatMB)
     t.cell('Heap Used Diff', memoryUsageDiff.heapUsed, formatMB)
     t.newRow()
+} catch (err) {
+console.log('Error parsing : ' + dep );
+}
     return cb()
   })
 }, function (err) {
