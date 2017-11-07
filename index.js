@@ -1,4 +1,4 @@
-#!/bin/env node
+#!/usr/bin/env node
 var async = require('async')
 var Table = require('easy-table')
 var exec = require('child_process').exec
