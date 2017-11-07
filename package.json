@@ -2,6 +2,7 @@
   "name": "module_footprints",
   "version": "1.0.2",
   "description": "",
+  "repository": "david-martin/module_footprints",
   "main": "index.js",
   "bin": "index.js",
   "scripts": {
