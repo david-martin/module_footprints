@@ -20,8 +20,8 @@ async.mapSeries(Object.keys(list), function (dep, cb) {
   options.env.TEST_MODULE_NAME = dep
   exec('node ' + path.dirname(__filename) + '/test.js', options, function (err, stdout) {
     if (err) {
-      return cb()
       console.log('Error parsing : ' + dep + err );
+      return cb()
     }
     console.log('stdout', stdout)
 try{
@@ -32,7 +32,7 @@ try{
     t.cell('Heap Used Diff', memoryUsageDiff.heapUsed, formatMB)
     t.newRow()
 } catch (err) {
-console.log('Error parsing : ' + dep );
+  console.log('Error parsing : ' + dep );
 }
     return cb()
   })
