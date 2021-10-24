@@ -1,6 +1,6 @@
 # Summary
 
-Show the memory footprint of Node.js module i.e. how much memory is used when a module is 'require'd
+Show the memory footprint of a Node.js module i.e. how much memory is used when a module is `require`d
 
 # Usage
 
@@ -16,10 +16,15 @@ module_footprints
 # Sample Output
 
 ```
+module_footprints
+Running test for async
+stdout {"rss":1007616,"heapTotal":446464,"heapUsed":383360,"name":"async"}
+
+Running test for easy-table
+stdout {"rss":364544,"heapTotal":262144,"heapUsed":199264,"name":"easy-table"}
+
 Module Name  RSS Diff  Heap Total Diff  Heap Used Diff
 -----------  --------  ---------------  --------------
-jsdom        36.46 MB  30.51 MB         21.04 MB      
-babel-core   16.23 MB  21.00 MB         8.19 MB       
-restify      16.03 MB  14.08 MB         10.72 MB      
-mongoose     15.03 MB  12.00 MB         8.42 MB       
+async        0.96 MB   0.43 MB          0.37 MB
+easy-table   0.35 MB   0.25 MB          0.19 MB
 ```
